@@ -1,1 +1,1 @@
-# GameMapDesigner
+# com.gs.designer.GameMapDesigner

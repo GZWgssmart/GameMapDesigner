@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d0feea3-a8f7-4fda-8a4e-ccd82dcd2ab1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameMapDesigner.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gs/designer/A" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gs/designer/Barrier.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gs/designer/GameMapDesigner.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gs/designer/障碍物坐标.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-    </list>
+    <list default="true" id="5d0feea3-a8f7-4fda-8a4e-ccd82dcd2ab1" name="Default" comment="" />
     <ignored path="GameMapDesigner.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -606,12 +596,12 @@
       <created>1450230966384</created>
       <option name="number" value="Default" />
       <updated>1450230966384</updated>
-      <workItem from="1450230969805" duration="11352000" />
+      <workItem from="1450230969805" duration="11555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11352000" />
+    <option name="totallyTimeSpent" value="11555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />

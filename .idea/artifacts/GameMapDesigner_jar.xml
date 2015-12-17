@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GameMapDesigner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GameMapDesigner_jar</output-path>
+    <root id="archive" name="GameMapDesigner.jar">
+      <element id="module-output" name="GameMapDesigner" />
+    </root>
+  </artifact>
+</component>

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         }
     }
 
-    public void saveBarriers() {
+    public void saveBarriers() throws IOException {
         String str = "";
         barriers.removeAll(toMovedBarriers);
         for(int i = 0, size = barriers.size(); i < size; i++) {
@@ -122,7 +123,15 @@ public class GameMapDesigner extends JFrame implements ActionListener {
                 str += ", {" + barrier.getRow() + ", " + barrier.getCol() + ", " + barrier.getType() + "}";
             }
         }
+        outToFile(str);
         System.out.println(str);
+    }
+
+    public void outToFile(String str) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("barrier.txt")));
+        writer.write(str);
+        writer.flush();
+        writer.close();
     }
 
     @Override
@@ -137,7 +146,11 @@ public class GameMapDesigner extends JFrame implements ActionListener {
                 for(Barrier barrier : barriers) {
                     barrier.setType(typeFld.getText());
                 }
-                saveBarriers();
+                try {
+                    saveBarriers();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             } else {
                 Color oColor = btn.getBackground();
                 String[] rowCol = name.split(",");

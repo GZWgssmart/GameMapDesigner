@@ -13,22 +13,12 @@ import java.util.List;
  */
 public class GameMapDesigner extends JFrame implements ActionListener {
 
-    private int width;
-    private int height;
-    private int size;
     private String type;
-
-    private JLabel widthLbl;
-    private JLabel heightLbl;
-    private JLabel sizeLbl;
-    private JLabel typeLbl;
 
     private JTextField widthFld;
     private JTextField heightFld;
     private JTextField sizeFld;
     private JTextField typeFld;
-    private JButton generateMapBtn;
-    private JButton saveBtn;
 
     private JPanel centerPanel;
     private JPanel bottomPanel;
@@ -44,25 +34,25 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         add(centerPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
         UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        barriers = new ArrayList<Barrier>();
-        toMovedBarriers = new ArrayList<Barrier>();
+        barriers = new ArrayList<>();
+        toMovedBarriers = new ArrayList<>();
     }
 
     private void initWidgets() {
-        widthLbl = new JLabel("地图宽度:");
-        heightLbl = new JLabel("地图高度:");
-        sizeLbl = new JLabel("地图格子尺寸:");
-        typeLbl = new JLabel("格子类型:");
+        JLabel widthLbl = new JLabel("地图宽度:");
+        JLabel heightLbl = new JLabel("地图高度:");
+        JLabel sizeLbl = new JLabel("地图格子尺寸:");
+        JLabel typeLbl = new JLabel("格子类型:");
         widthFld = new JTextField(4);
         heightFld = new JTextField(4);
         sizeFld = new JTextField(4);
         typeFld = new JTextField(10);
-        generateMapBtn = new JButton("生成地图");
+        JButton generateMapBtn = new JButton("生成地图");
         generateMapBtn.setName("generateMap");
         generateMapBtn.addActionListener(this);
-        saveBtn = new JButton("生成数组");
+        JButton saveBtn = new JButton("生成数组");
         saveBtn.setName("save");
         saveBtn.addActionListener(this);
         centerPanel = new JPanel();
@@ -87,11 +77,11 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         type = typeFld.getText();
         if(widthStr == null || widthStr.length() ==0 || heightStr == null || heightStr.length() == 0 ||
                 sizeStr == null || sizeStr.length() == 0) {
-
+            // TODO show the dialog to user
         } else {
-            width = Integer.valueOf(widthStr);
-            height = Integer.valueOf(heightStr);
-            size = Integer.valueOf(sizeStr);
+            int width = Integer.valueOf(widthStr);
+            int height = Integer.valueOf(heightStr);
+            int size = Integer.valueOf(sizeStr);
             int cols = width / size;
             int rows = height / size;
             for(int i = 0; i < rows; i++) {
@@ -109,7 +99,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         }
     }
 
-    public void saveBarriers() throws IOException {
+    private void saveBarriers() throws IOException {
         String str = "";
         barriers.removeAll(toMovedBarriers);
         for(int i = 0, size = barriers.size(); i < size; i++) {
@@ -127,7 +117,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         System.out.println(str);
     }
 
-    public void outToFile(String str) throws IOException {
+    private void outToFile(String str) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("barrier.txt")));
         writer.write(str);
         writer.flush();
@@ -181,13 +171,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
             public void run() {
                 try {
                     new GameMapDesigner();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedLookAndFeelException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }

@@ -77,7 +77,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         type = typeFld.getText();
         if(widthStr == null || widthStr.length() ==0 || heightStr == null || heightStr.length() == 0 ||
                 sizeStr == null || sizeStr.length() == 0) {
-            // TODO show the dialog to user
+            JOptionPane.showMessageDialog(this, "请输入地图宽度,地图高度和地图格子尺寸", "提示", JOptionPane.INFORMATION_MESSAGE);
         } else {
             int width = Integer.valueOf(widthStr);
             int height = Integer.valueOf(heightStr);

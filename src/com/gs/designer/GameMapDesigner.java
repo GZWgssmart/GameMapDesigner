@@ -36,6 +36,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
         UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+        setLocationRelativeTo(null);
         barriers = new ArrayList<>();
         toMovedBarriers = new ArrayList<>();
     }
@@ -79,6 +80,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
                 sizeStr == null || sizeStr.length() == 0) {
             JOptionPane.showMessageDialog(this, "请输入地图宽度,地图高度和地图格子尺寸", "提示", JOptionPane.INFORMATION_MESSAGE);
         } else {
+            centerPanel.removeAll();
             int width = Integer.valueOf(widthStr);
             int height = Integer.valueOf(heightStr);
             int size = Integer.valueOf(sizeStr);
@@ -96,32 +98,9 @@ public class GameMapDesigner extends JFrame implements ActionListener {
             }
             centerPanel.validate();
             centerPanel.repaint();
+            barriers.clear();
+            toMovedBarriers.clear();
         }
-    }
-
-    private void saveBarriers() throws IOException {
-        String str = "";
-        barriers.removeAll(toMovedBarriers);
-        for(int i = 0, size = barriers.size(); i < size; i++) {
-            Barrier barrier = barriers.get(i);
-            if((i + 1) % 10 == 0) {
-                str += "\n";
-            }
-            if(str.equals("")) {
-                str += "{" + barrier.getRow() + ", " + barrier.getCol() + ", " + barrier.getType() + "}";
-            } else {
-                str += ", {" + barrier.getRow() + ", " + barrier.getCol() + ", " + barrier.getType() + "}";
-            }
-        }
-        outToFile(str);
-        System.out.println(str);
-    }
-
-    private void outToFile(String str) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("barrier.txt")));
-        writer.write(str);
-        writer.flush();
-        writer.close();
     }
 
     @Override
@@ -137,7 +116,7 @@ public class GameMapDesigner extends JFrame implements ActionListener {
                     barrier.setType(typeFld.getText());
                 }
                 try {
-                    saveBarriers();
+                    GameMapUtil.saveBarriers(barriers, toMovedBarriers);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
